@@ -1,0 +1,11 @@
+{
+    "id": 8,
+    "title": "The beauty and the beast",
+    "owner": 2,
+    "private": false,
+    "watchDate": 20220513,
+    "rating": 4,
+    "favorite": false,
+    "self": "/api/films/public/8",
+    "reviews": "/api/films/public/8/reviews"
+}

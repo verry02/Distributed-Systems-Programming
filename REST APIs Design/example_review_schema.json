@@ -1,0 +1,11 @@
+  {
+    "filmId": 3,
+    "reviewerId": 2,
+    "completed": true,
+    "reviewDate": "2025-01-10",
+    "rating": 6,
+    "review": "Nice film",
+    "invitationStatus": "accepted",
+    "expirationDate": "2027-02-28T12:00:00.000Z"
+
+}

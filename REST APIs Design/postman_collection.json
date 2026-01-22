@@ -1,0 +1,823 @@
+{
+	"info": {
+		"_postman_id": "e8636c12-5cbf-499a-ae65-47e44aa46bdb",
+		"name": "DSP Exam Call 19/01/2026",
+		"description": "Examples of invocations of the API operations.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50675771",
+		"_collection_link": "https://s329489-4402680.postman.co/workspace/Paola's-Workspace~65a85505-5e9b-4dd8-8f1e-3c6250237a57/collection/50675771-e8636c12-5cbf-499a-ae65-47e44aa46bdb?action=share&source=collection_link&creator=50675771"
+	},
+	"item": [
+		{
+			"name": "Point 1: Review Restriction",
+			"item": [
+				{
+					"name": "Login Owner (User 1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user.dsp@polito.it\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send a review invitation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"filmId\": 3,\n        \"reviewerId\": 2,\n        \"completed\": false,\n        \"invitationStatus\": \"pending\",\n        \"expirationDate\": \"2027-02-28T12:00:00.000Z\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/3/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"3",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Invited (User 2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"frank.stein@polito.it\",\n    \"password\": \"shelley97\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve all the review invitation",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/invited",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"invited"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "try to complete a review invitation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"completed\": 1,\n  \"reviewDate\": \"2025-01-10\",\n  \"rating\": 6,\n  \"review\": \"Nice film\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/3/reviews/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"3",
+								"reviews",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept the review invitation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/invited/acceptance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"invited",
+								"acceptance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "try to complete the review invitation (success)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"completed\": 1,\n  \"reviewDate\": \"2025-01-10\",\n  \"rating\": 6,\n  \"review\": \"Nice film\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/3/reviews/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"3",
+								"reviews",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve all the review invitation (check)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/3/reviews/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"3",
+								"reviews",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "\"When a film owner invites a user to review a film, the invited user must explicitly accept the invitation before being enabled to make the review (e.g. to update it).\n\nWhile the invited user does not express acceptance, the review invitation remains in a pending state, which prevents the invited user from updating the review.\"\n\n---\n\nThis folder executes the following workflow:\n\n- The owner (user 1) invites User 2 to review his film 'Avatar'.\n    \n- A GET request is performed by the user 2 to verify the invitation.\n    \n- User 2 tries to submit the review but receives an error because the invitation is still pending (as per requirements).\n    \n- The user accepts the invitation and successfully submits the review.\n    \n- A final GET request done by user 2 displays the completed review.\n    \n\n**Note:** To repeat this test, you must reset the database state manually. Open `databaseV1.db` with DB Browser, go to the `reviews` table, and execute this SQL query: `DELETE FROM reviews WHERE filmId = 3 and reviewerId = 2;`"
+		},
+		{
+			"name": "Point 2: Issue Invitation with Expiration",
+			"item": [
+				{
+					"name": "Login Owner (User 1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user.dsp@polito.it\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send a review invitation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"filmId\": 3,\n        \"reviewerId\": 6,\n        \"completed\": false,\n        \"invitationStatus\": \"pending\",\n        \"expirationDate\": \"2027-02-28T12:00:00.000Z\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/3/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"3",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Invited (User 6)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"arthur.pendragon@polito.it\",\n    \"password\": \"holygrail\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve all the invitation (as invited)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/invited",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"invited"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Owner (User 1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user.dsp@polito.it\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve all the invitations (as owner)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/3/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"3",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "\"The issuer of a review invitation must be able to specify the maximum time allowed for the user to accept it. When this time expires, the review invitation is automatically cancelled by the system, and it becomes invisible for the invited user, but not for the user who created it.\"\n\n---\n\nThis folder executes the following workflow:\n\n- The Owner (User 1) invites User 6 to review the film \"Avatar\" via a POST request. During this action, User 1 specifies the deadline for the review invitation.\n    \n- User 6 logs in and performs a GET request to verify the presence of the pending invitation.\n    \n- To simulate an expired invitation, please open `databasev1.db` usin DB Browser. Open the `review` table and manually modify ONLY the `expirationDate` field to a past date (e.g. 2017-02-28T12:00:00.000Z). Click \"Write Changes\" to save.\n    \n- return to postman and log in again as user 6. if you repeat the GET request for pending invitations, the list will be empty because the previous invitation has been updated to \"expired\".\n    \n- However, if you log in as user 1 (owner) and repeat the get request, you will se the expired invitation, as required.\n    \n\n**Note:** To repeat this test, you must reset the database state manually. Open `databaseV1.db` with DB Browser, go to the `reviews` table, and execute this SQL query:\n\n`DELETE FROM reviews WHERE filmId = 3 and reviewerId = 6;`"
+		},
+		{
+			"name": "Point 3: Owner Visibility & Filter",
+			"item": [
+				{
+					"name": "Login owner (User 2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"frank.stein@polito.it\",\n    \"password\": \"shelley97\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reviews (As Owner)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/5/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"5",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login owner (User 5) invited",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"beatrice.golden@polito.it\",\n    \"password\": \"seagulls\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Reviews (As invited)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/5/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"5",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login owner (User 2)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"frank.stein@polito.it\",\n    \"password\": \"shelley97\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews Filtered (Pending - empty)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/5/reviews?status=pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"5",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews Filtered (accepted)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/5/reviews?status=accepted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"5",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "accepted"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews Filtered (expired)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/5/reviews?status=expired",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"5",
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "expired"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "\"The status of all the review invitations sent for a film, including their expiration time, must be visible, but only to the film owner who created those invitations. In particular, the film owner must be able to know if any review invitation is in the pending state, or if it has been accepted by the invited user, or if it is expired. To avoid the transfer of unnecessary information, the film owner should also have the option to select the information to retrieve (e.g. only invitations in the pending state, if any).\"\n\n---\n\nThis folder executes the following workflow:\n\n- The Owner (User 2) logs in and performs a GET request to view all sent review invitations. The response includes detailed status and expiration dates for each invitation.\n    \n- This data is visible only to the owner. For instance, if User 5 logs in and performs the same request, he will not see the invitation details (as per requirements).\n    \n- The owner can also filter invitations by status (accepted, pending, expired). If no invitations exist for a specific status, the server returns an empty array.\n    \n\nNOTE: to perform this test, the database is already populated with 1 review expired, 1 review accepted and 0 reviews pending."
+		},
+		{
+			"name": "Point 4: Invitee Retrieve & Accept All",
+			"item": [
+				{
+					"name": "Login Invited (User 1)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user.dsp@polito.it\",\n    \"password\": \"password\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/users/authenticator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"users",
+								"authenticator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Pending Invitations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/invited?status=pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"invited"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept ALL Invitations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/invited/acceptance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"invited",
+								"acceptance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Pending Invitations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/invited?status=pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"invited"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My accepted Invitations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/films/public/invited?status=pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"films",
+								"public",
+								"invited"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pending"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "\"Invited user must be able to retrieve their pending invitations, select what to retrieve (to avoid transferring unnecessary information) and accept all their pending invitations (in a single operation)\".\n\n---\n\nThis folder executes the following workflow:\n\n1. The invited user (User 1) logs in and performs a GET request filtered to retrieve only their pending review invitations.\n    \n2. Through a specific POST request, the user accepts all pending invitations simultaneously.\n    \n3. Finally, the user repeats the GET request (this time filtered for \"accepted\" status) to confirm that the invitations have been successfully updated and are now visible.\n    \n\n**Note:** To repeat this test, you must reset the database state manually. Open `databaseV1.db` with DB Browser, go to the `reviews` table, and change the status from `'accepted'` back to `'pending'` for User 1 (specifically for Film IDs 6 and 7). Alternatively, execute this SQL query:\n\n`UPDATE reviews SET invitationStatus = 'pending' WHERE reviewerId = 1 AND filmId IN (6, 7);`"
+		}
+	]
+}
